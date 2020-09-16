@@ -7,25 +7,35 @@ namespace HelloWorld
     class Player
     {
         private string _name;
+        private string _role;
         private int _health;
         private int _damage;
+        private Item[] _inventory;
 
         public Player()
         {
+            _inventory = new Item[3];
             _health = 100;
             _damage = 10;
         }
 
-        public Player(string nameVal, int healthVal, int damageVal)
+        public Player(string nameVal, int healthVal, int damageVal, int inventorySize)
         {
             _name = nameVal;
+            
             _health = healthVal;
             _damage = damageVal;
+            _inventory = new Item[inventorySize];
         }
 
-        public void EquipItem(Item weapon)
+        public void AddItemToInventory(Item item, int index)
         {
-            _damage += weapon.statBoost;
+            _inventory[index] = item;
+        }
+
+        public void EquipItem(int itemIndex)
+        {
+            _damage = _inventory[itemIndex].statBoost;
         }
         
         public string GetName()
@@ -46,6 +56,7 @@ namespace HelloWorld
         public void PrintStats()
         {
             Console.WriteLine("Name: " + _name);
+            Console.WriteLine("Role: " + _role);
             Console.WriteLine("Health: " + _health);
             Console.WriteLine("Damage: " + _damage);
         }
