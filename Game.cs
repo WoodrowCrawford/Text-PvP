@@ -21,6 +21,8 @@ namespace HelloWorld
         private bool _gameOver = false;
         private Player _player1;
         private Player _player2;
+        private Character _player1Partner;
+        private Character _player2Partner;                                                                  
         private Item _bow;
         private Item _lance;
         private Item _stick;
@@ -263,7 +265,8 @@ namespace HelloWorld
                 if(input == '1')
                 {
                     Console.WriteLine(" ");
-                    _player1.Attack(_player2);
+                    float damageTaken = _player1.Attack(_player2);
+                    Console.WriteLine(_player1.GetName() + " did " + damageTaken + " damage);
                 }
                 else
                 {
@@ -300,6 +303,9 @@ namespace HelloWorld
         public void Start()
         {
             InitializeItems();
+            _player1Partner = new Wizard(120, "Wizard Lizard", 20, 100);
+            _player2Partner = new Wizard(120, "Harry Wizard 101", 20, 100);
+
         }
 
         //Repeated until the game ends

@@ -14,16 +14,15 @@ namespace HelloWorld
         private Item _currentWeapon;
         private Item _hands;
 
-        public Player()
+        public Player() : base()
         {
             _inventory = new Item[3];
-            _health = 100;
-            _baseDamage = 10;
             _hands.name = "Hands";
             _hands.statBoost = 0;
         }
 
-        public Player(string nameVal, int healthVal, int damageVal, int inventorySize)
+        public Player(string nameVal, float healthVal, float damageVal, int inventorySize)
+            : base 
         {
             _name = nameVal;
             _health = healthVal;
@@ -63,22 +62,14 @@ namespace HelloWorld
             
         }
         
-        public string GetName()
-        {
-            return _name;
-        }
-
-        public bool GetIsAlive()
-        {
-            return _health > 0;
-        }
+        
 
         public void UnequipItem()
         {
             _currentWeapon = _hands;
         }
 
-        public void Attack(Player enemy)
+        public  Attack(Player enemy)
         {
             int totalDamage = _baseDamage + _currentWeapon.statBoost;
             enemy.TakeDamage(totalDamage);
